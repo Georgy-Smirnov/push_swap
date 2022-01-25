@@ -93,3 +93,9 @@ int	allfree(t_all *all)
 	free(all);
 	return (0);
 }
+
+int	step_error(t_all *all)
+{
+	write(1, "Error\n", 6);
+	return (allfree(all));
+}

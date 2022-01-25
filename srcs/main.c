@@ -26,19 +26,6 @@ int	check_stack(int *stack_a, int size)
 	return (0);
 }
 
-int	my_atoi(char *str)
-{
-	int	rez;
-
-	if (ft_strlen(str) > 10)
-		return (0);
-	if (ft_strlen(str) == 10 && ft_strncmp(str, "4294967295", \
-		ft_strlen(str)) > 0)
-		return (0);
-	rez = ft_atoi(str);
-	return (rez);
-}
-
 int	main(int argc, char**argv)
 {
 	t_all	*all;
@@ -50,13 +37,11 @@ int	main(int argc, char**argv)
 	all = init_struct(argc);
 	while (i < all->size)
 	{
-		all->arr[i] = my_atoi(argv[i + 1]);
-		if ((all->arr[i] == 0 && argv[i + 1][0] != \
-			'0' && argv[i + 1][1] != '\0') || check_stack(all->arr, i))
-		{
-			write(1, "Error\n", 8);
-			return (allfree(all));
-		}
+		all->arr[i] = ft_atoi(argv[i + 1]);
+		if (all->arr[i] == 0 && (argv[i + 1][0] != 48 || argv[i + 1][1] != 0))
+			return (step_error(all));
+		if (check_stack(all->arr, i))
+			return (step_error(all));
 		if (push_stack_end(&(all->a), all->arr[i]))
 			return (allfree(all));
 		++i;

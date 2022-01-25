@@ -79,5 +79,6 @@ int		start_read(t_all *all);
 void	sort_array(int *a, int size);
 int		check_right(t_all *all);
 int		str_cmp(char *str1, char *str2);
+int		step_error(t_all *all);
 
 #endif
